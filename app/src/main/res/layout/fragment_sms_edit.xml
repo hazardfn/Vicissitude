@@ -55,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="@string/sms_edit_alarm_summary_hint"
+            android:imeOptions="actionNext"
             android:inputType="textMultiLine"
             android:lines="3"
             android:maxLength="109"
@@ -126,6 +127,7 @@
             android:layout_height="fill_parent"
             android:ems="10"
             android:hint="@string/sms_edit_alert_test_body_hint"
+            android:imeOptions="actionNext"
             android:inputType="textMultiLine" />
 
         <TableRow
@@ -147,7 +149,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="false"
-            android:hint="@string/sms_edit_alert_notification_period_from_hint" />
+            android:hint="@string/sms_edit_alert_notification_period_from_hint"
+            android:imeOptions="actionNext" />
 
         <TableRow
             android:layout_width="match_parent"
@@ -167,7 +170,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:focusable="false"
-            android:hint="@string/sms_edit_alert_notification_period_to_hint" />
+            android:hint="@string/sms_edit_alert_notification_period_to_hint"
+            android:imeOptions="actionDone" />
 
         <Button
             android:id="@+id/btnTest"
