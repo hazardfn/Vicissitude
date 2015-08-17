@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".SmsFragment">
+
+    <item
+        android:id="@+id/action_activate_all"
+        android:icon="@drawable/ic_activate_all"
+        android:orderInCategory="1"
+        android:title="@string/action_activate_all"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_deactivate_all"
+        android:icon="@drawable/ic_deactivate_all"
+        android:orderInCategory="2"
+        android:title="@string/action_deactivate_all"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_add_alarm"
+        android:icon="@drawable/ic_add_alarm"
+        android:orderInCategory="0"
+        android:title="@string/sms_action_add_alarm_title"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_view_logs"
+        android:orderInCategory="3"
+        android:title="@string/sms_action_view_logs_title"
+        app:showAsAction="never" />
+
+
+    <item
+        android:id="@+id/action_help"
+        android:orderInCategory="101"
+        android:title="@string/action_help"
+        app:showAsAction="never" />
+
+</menu>

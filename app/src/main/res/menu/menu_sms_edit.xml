@@ -1,0 +1,19 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.apps.howard.vicissitude.activities.SmsEditActivity">
+
+    <item
+        android:id="@+id/action_save_alarm"
+        android:icon="@drawable/ic_alarm_save"
+        android:orderInCategory="0"
+        android:title="@string/sms_edit_action_save_alarm_title"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_close_edit"
+        android:icon="@drawable/ic_delete_alarm"
+        android:orderInCategory="1"
+        android:title="@string/sms_edit_action_close_without_saving_title"
+        app:showAsAction="ifRoom" />
+</menu>

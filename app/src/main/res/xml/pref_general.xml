@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="@string/pref_storage_settings_key"
+        android:title="@string/pref_storage_settings_title">
+        <EditTextPreference
+            android:defaultValue="30"
+            android:inputType="number"
+            android:key="@string/pref_alert_retention_key"
+            android:numeric="integer"
+            android:summary="@string/pref_alert_retention_summary"
+            android:title="@string/pref_alert_retention_title" />
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="@string/pref_flood_settings_key"
+        android:title="@string/pref_flood_settings_title">
+
+        <SwitchPreference
+            android:key="@string/pref_flood_protection_key"
+            android:summary="@string/pref_flood_protection_summary"
+            android:title="@string/pref_flood_protection_title" />
+
+        <EditTextPreference
+            android:defaultValue="5"
+            android:inputType="number"
+            android:key="@string/pref_flood_protection_message_limit_key"
+            android:summary=""
+            android:title="@string/pref_flood_protection_message_limit_title" />
+
+        <EditTextPreference
+            android:defaultValue="30"
+            android:inputType="number"
+            android:key="@string/pref_flood_protection_time_key"
+            android:summary=""
+            android:title="@string/pref_flood_protection_time_title" />
+        <EditTextPreference
+            android:editable="false"
+            android:enabled="false"
+            android:key="@string/human_readable_flood_protection"
+            android:summary=""
+            android:title=""></EditTextPreference>
+
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:key="@string/pref_sound_settings_key"
+        android:title="@string/pref_sound_settings_title">
+
+        <RingtonePreference
+            android:key="@string/pref_sound_alarm_tone_key"
+            android:ringtoneType="alarm"
+            android:showSilent="false"
+            android:title="@string/pref_sound_alarm_tone_title" />
+
+        <SwitchPreference
+            android:key="@string/pref_override_volume_key"
+            android:summary="@string/pref_override_volume_summary"
+            android:title="@string/pref_override_volume_title" />
+
+        <com.apps.howard.vicissitude.controls.SeekBarPreference
+            android:key="@string/pref_alert_volume_key"
+            android:layout="@layout/seek_bar_settings"
+            android:summary="@string/pref_alert_volume_summary"
+            android:title="@string/pref_alert_volume_title" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
