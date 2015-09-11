@@ -83,7 +83,7 @@
             android:ems="10"
             android:hint="@string/sms_edit_alert_numbers_hint"
             android:imeOptions="actionNext"
-            android:inputType="phone|textMultiLine" />
+            android:inputType="text" />
 
         <TableRow
             android:layout_width="match_parent"
