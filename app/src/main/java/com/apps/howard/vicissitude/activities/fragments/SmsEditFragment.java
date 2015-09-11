@@ -284,12 +284,19 @@ public class SmsEditFragment extends Fragment {
         String Name = this.Name.getText().toString();
         String Summary = this.Summary.getText().toString();
 
-        ArrayList<String> Numbers = new ArrayList<>(
+        ArrayList<String> tempNumbers = new ArrayList<>(
                 Arrays.asList(
                         this.Numbers.getText().toString()
                                 .split(",")
                 )
         );
+
+        ArrayList<String> Numbers = new ArrayList<String>();
+
+        for (String s : tempNumbers)
+        {
+            Numbers.add(s.trim());
+        }
 
         ArrayList<String> Expressions = new ArrayList<>(
                 Arrays.asList(

@@ -38,7 +38,7 @@
     <string name="sms_edit_alarm_new_title">Create SMS Alarm</string>
     <string name="create_sms_blank_name">Alarms without names are like hotdogs without the sausage!</string>
     <string name="sms_edit_alarm_summary_hint">Alarm Summary</string>
-    <string name="sms_edit_alert_numbers_hint">Numbers to trigger on</string>
+    <string name="sms_edit_alert_numbers_hint">Senders to trigger on</string>
     <string name="sms_edit_alert_expressions_hint">RegEx to trigger on</string>
     <string name="sms_edit_alert_test_body_hint">Message Body</string>
     <string name="sms_edit_alert_notification_period_from_hint">Notification Period (From)</string>
