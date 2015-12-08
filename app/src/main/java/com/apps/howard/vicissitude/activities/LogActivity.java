@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 
 import com.apps.howard.vicissitude.R;
+import com.apps.howard.vicissitude.classes.database.AlertLogDbHelper;
 
 public class LogActivity extends AppCompatActivity {
 
@@ -14,9 +15,9 @@ public class LogActivity extends AppCompatActivity {
         setContentView(R.layout.activity_log);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_log_view, menu);
         return true;
     }
 }

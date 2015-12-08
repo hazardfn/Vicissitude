@@ -1,15 +1,18 @@
 package com.apps.howard.vicissitude.activities.fragments;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.apps.howard.vicissitude.R;
+import com.apps.howard.vicissitude.classes.database.AlertLogDbHelper;
 import com.apps.howard.vicissitude.classes.tasks.FetchLogDataTask;
 
 /**
@@ -50,8 +53,34 @@ public class LogFragment extends Fragment {
             }
         });
 
+        setHasOptionsMenu(true);
+
         return rootView;
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id==R.id.action_clear_logs)
+        {
+            AlertLogDbHelper dbHelper = new AlertLogDbHelper(this.getActivity());
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+            dbHelper.onUpgrade(db,0,0);
+            loadLogData();
+
+            return super.onOptionsItemSelected(item);
+        }
+
+        getActivity().onBackPressed();
+
+        return super.onOptionsItemSelected(item);
+    }
+
     //endregion
 
     //region Internal Methods

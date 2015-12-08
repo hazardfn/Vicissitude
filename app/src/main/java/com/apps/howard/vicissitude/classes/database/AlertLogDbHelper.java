@@ -25,6 +25,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.util.Date;
+
 public class AlertLogDbHelper extends SQLiteOpenHelper {
     // If you change the database schema, you must increment the database version.
     private static final int DATABASE_VERSION = 1;
@@ -41,6 +43,11 @@ public class AlertLogDbHelper extends SQLiteOpenHelper {
                     " )";
     private static final String SQL_DELETE_ENTRIES =
             "DROP TABLE IF EXISTS " + AlertLogContract.AlertLogEntry.TABLE_NAME;
+
+    private static final String SQL_DELETE_OLD_ENTRIES =
+            "DELETE FROM " + AlertLogContract.AlertLogEntry.TABLE_NAME +
+                    " WHERE " + AlertLogContract.AlertLogEntry.COLUMN_NAME_ADDED +
+                    " < ";
 
     public AlertLogDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -59,5 +66,11 @@ public class AlertLogDbHelper extends SQLiteOpenHelper {
 
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         onUpgrade(db, oldVersion, newVersion);
+    }
+
+    public void purgeOld(SQLiteDatabase db, Date purgeBefore)
+    {
+        String conditional = "Date('" + purgeBefore.toString() + "')";
+        db.execSQL(SQL_DELETE_OLD_ENTRIES + conditional);
     }
 }

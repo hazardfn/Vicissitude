@@ -65,4 +65,5 @@
     <string name="sms_edit_notification_to_label">Notification Period (To):</string>
     <string name="spartan_easter_egg">This. Is. BETAAAAAAAAAAAAA</string>
     <string name="notification_title_notification_service">"Incoming Alert(s) - "</string>
+    <string name="action_clear_logs">Clear Logs</string>
 </resources>

@@ -104,68 +104,27 @@ public class AlertLogService extends Service {
             } catch (NullPointerException e) {
                 action = null;
             }
-
-            // If the action exists pass it to the
-            // "maybe" functions to determine it's purpose
-            // any action not recognized will not do anything
-            if (action != null) {
-                maybeSetAlarm(action);
-                maybePurgeDB(action);
-            }
         }
 
         return START_STICKY;
     }
     //endregion
 
-    //region Internal Functions
-    private void maybePurgeDB(String action) {
-        if (action.equals("wipe-db")) {
-            purge();
-        }
-    }
-
-    private void maybeSetAlarm(String action) {
+    private void write(String service, String action) {
         // Get alert retention settings
         int settingsLogRetentionDays = Integer.valueOf(prefs.getString(
                 this.getString(R.string.pref_alert_retention_key), "30"
         ));
 
-        // Maybe set alarm
-        if (calendar == null || action.equals("timer-changed")) {
+        Date dateInstance = new Date();
 
-            // Set calendar to today's date and put it ahead the appropriate number of days
-            calendar = Calendar.getInstance();
-            calendar.add(Calendar.DAY_OF_YEAR, settingsLogRetentionDays);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(dateInstance);
+        cal.add(Calendar.DATE, -(settingsLogRetentionDays));
+        Date purgeBefore = cal.getTime();
 
-            // Create an intent to purge the database
-            Intent purgeIntent = new Intent(this.getApplicationContext(), AlertLogService.class);
+        purgeOld(purgeBefore);
 
-            // If alarm not already set or the time has changed then go for it.
-            if (!isAlarmSet(purgeIntent) || action.equals("timer-changed")) {
-                purgeIntent.setAction("wipe-db");
-                PendingIntent pendingIntent = PendingIntent.getService(
-                        this.getApplicationContext(), 25, purgeIntent,
-                        PendingIntent.FLAG_CANCEL_CURRENT
-                );
-
-                AlarmManager alarmManager = (AlarmManager) this.getApplicationContext()
-                        .getSystemService(ALARM_SERVICE);
-
-                alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP,
-                        calendar.getTimeInMillis(),
-                        calendar.getTimeInMillis(),
-                        pendingIntent
-                );
-            }
-        }
-    }
-
-    private boolean isAlarmSet(Intent intent) {
-        return (PendingIntent.getService(this.getApplicationContext(), 25, intent, PendingIntent.FLAG_NO_CREATE) != null);
-    }
-
-    private void write(String service, String action) {
         // Gets the data repository in write mode
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
@@ -186,10 +145,10 @@ public class AlertLogService extends Service {
                 values);
     }
 
-    private void purge() {
+    private void purgeOld(Date purgeBefore) {
         // Gets the data repository in write mode
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
-        mDbHelper.onUpgrade(db, 1, 1);
+        mDbHelper.purgeOld(db, purgeBefore);
     }
     //endregion
 }
